@@ -1,0 +1,55 @@
+{
+  "name": "jarvis-voice",
+  "displayName": "Jarvis Voice for Copilot Chat",
+  "description": "Talk to Copilot Chat with Whistle (STT) and hear it reply with Chatterbox Nano (TTS), all running locally.",
+  "version": "0.1.0",
+  "publisher": "jarvis",
+  "engines": { "vscode": "^1.95.0" },
+  "categories": ["AI", "Chat"],
+  "main": "./extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "contributes": {
+    "chatParticipants": [
+      {
+        "id": "jarvis.voice",
+        "name": "jarvis",
+        "fullName": "Jarvis",
+        "description": "Speak to Copilot and hear the answer",
+        "isSticky": true,
+        "commands": [
+          { "name": "talk", "description": "Listen to the microphone and answer out loud" }
+        ]
+      }
+    ],
+    "commands": [
+      { "command": "jarvis.talk", "title": "Jarvis: Talk (push to talk)" },
+      { "command": "jarvis.stop", "title": "Jarvis: Stop speaking" },
+      { "command": "jarvis.restartServer", "title": "Jarvis: Restart voice server" }
+    ],
+    "keybindings": [
+      { "command": "jarvis.talk", "key": "ctrl+alt+j" },
+      { "command": "jarvis.stop", "key": "ctrl+alt+k" }
+    ],
+    "configuration": {
+      "title": "Jarvis Voice",
+      "properties": {
+        "jarvis.serverDir": {
+          "type": "string",
+          "default": "",
+          "description": "Folder containing server.py and .venv. Empty = the folder above this extension (D:\\Jarvis)."
+        },
+        "jarvis.port": { "type": "number", "default": 8765 },
+        "jarvis.handsFree": {
+          "type": "boolean",
+          "default": false,
+          "description": "After Jarvis finishes speaking a voice reply, start listening again automatically (say nothing to end)."
+        },
+        "jarvis.speakTypedPrompts": {
+          "type": "boolean",
+          "default": true,
+          "description": "Also read replies aloud when you type to @jarvis instead of speaking."
+        }
+      }
+    }
+  }
+}

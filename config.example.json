@@ -1,0 +1,5 @@
+{
+  "tenant_id": "your-tenant-id-or-domain.onmicrosoft.com",
+  "client_id": "application-client-id-from-your-entra-app-registration",
+  "time_zone": ""
+}
